@@ -303,7 +303,7 @@ It is then cleaned before being exported (loading on Google drive):
 
 ```python
 # read the .ics file
-with open('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/Miriam.ics', 'r') as file:
+with open('calendar_file.ics', 'r') as file:
     calendar1 = Calendar(file.read())
 
 year_start=2024
@@ -313,7 +313,7 @@ year_end=2024
 month_end=7
 day_end=12
 
-file_path = '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/EXTRACTS_Miriam.xlsx'
+file_path = 'output_filepath.xlsx'
 
 # List of functions to apply in sequence
 process_steps = [
@@ -916,7 +916,7 @@ for step, kwargs in process_steps:
 
 ```python
 # read the .ics file
-# with open('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/cressita.brewster@startwisebarbados.com.ics', 'r') as file:
+# with open('calendar_filepath.ics', 'r') as file:
 #     calendar1 = Calendar(file.read())
 
 year_start=2024
@@ -926,7 +926,7 @@ year_end=2024
 month_end=7
 day_end=12
 
-file_path = '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/EXTRACTS_Cressita.xlsx'
+file_path = 'file_path.xlsx'
 
 # List of functions to apply in sequence
 process_steps = [
@@ -1098,7 +1098,7 @@ def batch_sum(df, file_path, pause_duration):
 
 ```python
 # Define keyword arguments
-file_path = '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/SUMMARIES/SUMS_TEST_28-Jul.xlsx'
+file_path = 'file_path.xlsx'
 pause_duration = 180
 
 # List of functions to apply in sequence with keyword arguments
@@ -1111,7 +1111,7 @@ process_steps_sum = [
 
 ```python
 # Execute the function pipeline
-df = pd.read_excel('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/GSHEETS_FOR_TSCRIPTS/TEST.xlsx')
+df = pd.read_excel('output_filepath.xlsx')
 for step, kwargs in process_steps_sum:
     df = step(df, **kwargs)
 ```
