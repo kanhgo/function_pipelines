@@ -247,60 +247,6 @@ def pause_for_manual_check(df):
 
 ```python
 '''
-clean_part2_v3 is to be used to complete the second set of steps in the cleaning process after manual review of small events i.e. events
-that may be personal or not meant for community sharing e.g. pod meetings, skill-up sessions etc.
-
-Actions: (i) drop unnecessary columns, (ii) add extra columns, (iii) order the columns, (iv) reset the index, (v) addition of IDs.
-
-Created: 13/July/2024
-
-Inputs:
-- table_name: table or dataframe produced after manual review and deletion of "small" events.
-- file_path: export file path including intended name of excel file (in quotes).
-- ID_start: starting ID for current batch of calender-sourced recordings
-
-Version logs:
-pandas = 2.2.1
-
-'''
-
-def clean_part2_v3(df, file_path, ID_start):
-    # drop unnecessary columns
-    #df.drop(columns=['Extra', 'Count', 'source_url', 'sourceC_url', 'sourceT_url'], axis=1, inplace=True)
-    # add extra needed columns 
-    df['Topics'] = ''
-    df['Type'] = ''
-    df['Sub-Type'] = ''
-    df['Related Skill'] = ''
-    df['Level'] = ''
-    df['Comments'] = ''
-    df['ID'] = ''
-    df['Transcript'] = ''
-    df['transcript_url_pdf'] = ''
-    df['Chunks'] = ''
-    df['Summary'] = ''
-    # order the columns
-    export = df[['ID', 'Source_ID', 'Title', 'Date', 'Duration (hh:mm)', 'Organizer', 'Topics', 'Type', 'Sub-Type', 'Level', 'Comments', 'video_url',
-                             'chat_url', 'transcript_url_pdf', 'Transcript', 'Chunks', 'Summary']].copy()
-    # reset the index
-    export.reset_index(drop=True, inplace=True)
-
-    # insert IDs
-    i = 0
-    for index, rows in export.iterrows():
-        export.at[index, 'ID'] = ID_start + i
-        i += 1
-    
-    # export file in excel format
-    export.to_excel(file_path, index=False)
-    
-    return print('Exported!')
-
-```
-
-
-```python
-'''
 clean_part2_v3_csv is to be used to complete the second set of steps in the cleaning process after manual review of small events i.e. events
 that may be personal or not meant for community sharing e.g. pod meetings, skill-up sessions etc.
 
@@ -365,37 +311,6 @@ It is then cleaned before being exported (loading on Google drive):
 - dropping of pod meetings
 - dropping of "small" events that have been manually verified as not relevant (during a pause of the pipeline)
 
-
-
-```python
-# '''
-# EXPORTING EXCEL FILES
-# '''
-
-# # read the .ics file
-# with open('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
-#     calendar1 = Calendar(file.read())
-
-# year_start=2024
-# month_start=1
-# day_start=1
-# year_end=2024
-# month_end=7
-# day_end=12
-
-# file_path = '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/EXTRACTED_DATA.xlsx'
-
-# ID_start = 0
-
-# # List of functions to apply in sequence
-# process_steps = [
-#     (load_parse_v3, {'year_start':year_start, 'month_start':month_start, 'day_start':day_start,
-#                      'year_end':year_end, 'month_end':month_end, 'day_end':day_end}),   # only key word arguments are listed i.e. not the input file
-#     (url_extraction_v2, {}),
-#     (clean_part1, {}),
-#     (pause_for_manual_check, {}),
-#     (clean_part2_v3, {'file_path':file_path, 'ID_start':ID_start})]
-```
 
 
 ```python
@@ -1015,36 +930,6 @@ for step, kwargs in process_steps:
 
 ### Pipeline: Calendar data extraction, transformation and loading (local)
 #### (Ongoing - with independent content calendar)
-
-
-```python
-# '''
-# EXPORTING EXCEL FILES
-# '''
-
-# # read the .ics file
-# with open('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
-#     calendar1 = Calendar(file.read())
-
-# year_start=2024
-# month_start=1
-# day_start=1
-# year_end=2024
-# month_end=7
-# day_end=12
-
-# file_path = '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/EXTRACTED_DATA.xlsx'
-
-# ID_start = 0
-
-# # List of functions to apply in sequence
-# process_steps = [
-#     (load_parse_v3, {'year_start':year_start, 'month_start':month_start, 'day_start':day_start,
-#                      'year_end':year_end, 'month_end':month_end, 'day_end':day_end}),   # only key word arguments are listed i.e. not the input file
-#     (url_extraction_v2, {}),
-#     (clean_part1, {}),
-#     (clean_part2_v3, {'file_path':file_path, 'ID_start':ID_start})]
-```
 
 
 ```python
