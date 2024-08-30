@@ -1,4 +1,4 @@
-## Aim: To extract calendar event information in a tabular format. (Non-API apporach)
+## Aim: To extract Google calendar event information and Chat Space links and transforming them into useful content assets. (Non-API apporach)
 
 ## STAGE 4
 # Functions and pipelines for Processing Content Sourced from Google Calendar Events
@@ -690,7 +690,8 @@ def batch_sum_v2(df, pause_duration=120, file_path='/Users/kerry-annharris/Docum
 
 ```python
 
-def batch_sum_csv(df, file_path, pause_duration):
+
+def batch_sum_csv_v2(df, pause_duration=120, file_path='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/SUMMARIZED_DATA.csv'):
     '''
     Function to summarize chunks in BATCHES to manage the computational load associated with using DistilBART for
     text summarization. A pause between batches is included to help with computaional efficiency i.e. manage issue of 
@@ -700,8 +701,8 @@ def batch_sum_csv(df, file_path, pause_duration):
 
     Inputs:
     df with chunks in required column
-    file_path for exporting of updated data frame as an csv file (in quotes)
-    pause_duration represents the pause in seconds as e.g. 180 (=3 mins)
+    file_path for exporting of updated data frame as an excel file (in quotes). Currently defaults to: file_path='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/SUMMARIZED_DATA.csv':
+    pause_duration represents the pause in seconds as e.g. 180 (=3 mins). Currently defaults to 120.
 
     Version logs:
     pandas==2.2.2
@@ -732,17 +733,6 @@ def batch_sum_csv(df, file_path, pause_duration):
     df.to_csv(file_path, index=False)
     print ("File exported")
 ```
-
-
-```python
-batch_sum.__doc__
-```
-
-
-
-
-    '\n    Function to summarize chunks in BATCHES to manage the computational load associated with using DistilBART for\n    text summarization. A pause between batches is included to help with computaional efficiency i.e. manage issue of \n    over-heating etc. Progress messages are printed with each batch, along with a confirmation of file export.\n\n    Created: 28/July/2024\n\n    Inputs:\n    df with chunks in required column\n    file_path for exporting of updated data frame as an excel file (in quotes)\n    pause_duration represents the pause in seconds as e.g. 180 (=3 mins)\n\n    Version logs:\n    pandas==2.2.2\n    transformers===4.38.2\n\n    '
-
 
 
 ### Pipeline: Generation of summaries from extracted transcripts
