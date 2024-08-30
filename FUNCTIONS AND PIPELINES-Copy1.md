@@ -228,7 +228,7 @@ Created: 25/August/2024
 Inputs:
 - table_name: table or dataframe produced after manual review and deletion of "small" events.
 - file_path: export file path including intended name of excel file (in quotes).
-    Currently defaults to: '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/EXTRACTED_DATA.xlsx'
+    Currently defaults to: '/Users/file_path/EXTRACTED_DATA.xlsx'
 - ID_start: starting ID for current batch of calender-sourced recordings
 
 Version logs:
@@ -236,7 +236,7 @@ pandas = 2.2.1
 
 '''
 
-def clean_part2_v4(df, ID_start, file_path='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/EXTRACTED_DATA.xlsx'):
+def clean_part2_v4(df, ID_start, file_path='/Users/file_path/EXTRACTED_DATA.xlsx'):
     # drop unnecessary columns
     df.drop(columns=['Extra', 'Count', 'source_url', 'sourceC_url', 'sourceT_url'], axis=1, inplace=True)
     # add extra needed columns 
@@ -283,14 +283,14 @@ Created: 25/August/2024
 Inputs:
 - table_name: table or dataframe produced after manual review and deletion of "small" events.
 - file_path: export file path including intended name of csv file (in quotes).
-    Currently defaults to: '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/EXTRACTED_DATA.csv'
+    Currently defaults to: '/Users/file_path/EXTRACTED_DATA.csv'
 
 Version logs:
 pandas = 2.2.1
 
 '''
 
-def clean_part2_v4_csv(df, ID_start, file_path='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/EXTRACTED_DATA.csv'):
+def clean_part2_v4_csv(df, ID_start, file_path='/Users/file_path/EXTRACTED_DATA.csv'):
     # drop unnecessary columns
     df.drop(columns=['Extra', 'Count', 'source_url', 'sourceC_url', 'sourceT_url'], axis=1, inplace=True)
     # add extra needed columns 
@@ -347,7 +347,7 @@ It is then cleaned before being exported (loading on Google drive):
 # '''
 
 # # read the .ics file
-# with open('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
+# with open('/Users/file_path/CALENDAR_DATA.ics', 'r') as file:
 #     calendar1 = Calendar(file.read())
 
 # year_start=2024
@@ -376,7 +376,7 @@ EXPORTING CSV FILES
 '''
 
 # read the .ics file
-with open('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
+with open('/Users/file_path/CALENDAR_DATA.ics', 'r') as file:
     calendar1 = Calendar(file.read())
 
 year_start=2024
@@ -416,7 +416,7 @@ for step, kwargs in process_steps:
 # '''
 
 # # read the .ics file
-# with open('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
+# with open('/Users/file_path/CALENDAR_DATA.ics', 'r') as file:
 #     calendar1 = Calendar(file.read())
 
 # year_start=2024
@@ -426,7 +426,7 @@ for step, kwargs in process_steps:
 # month_end=7
 # day_end=12
 
-# file_path = '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/EXTRACTED_DATA.xlsx'
+# file_path = '/Users/file_path/EXTRACTED_DATA.xlsx'
 
 # ID_start = 0
 
@@ -447,7 +447,7 @@ Updated approach.
 '''
 
 # read the .ics file
-with open('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
+with open('/Users/file_path/CALENDAR_DATA.ics', 'r') as file:
     calendar1 = Calendar(file.read())
 
 year_start=2024
@@ -644,7 +644,7 @@ def summarize_text_v2(text):
 
 ```python
 
-def batch_sum_v2(df, pause_duration=120, file_path='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/SUMMARIZED_DATA.xlsx'):
+def batch_sum_v2(df, pause_duration=120, file_path='/Users/file_path/SUMMARIZED_DATA.xlsx'):
     '''
     Function to summarize chunks in BATCHES to manage the computational load associated with using DistilBART for
     text summarization. A pause between batches is included to help with computaional efficiency i.e. manage issue of 
@@ -654,7 +654,7 @@ def batch_sum_v2(df, pause_duration=120, file_path='/Users/kerry-annharris/Docum
 
     Inputs:
     df with chunks in required column
-    file_path for exporting of updated data frame as an excel file (in quotes). Currently defaults to: (df, pause_duration=120, file_path='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/SUMMARIZED_DATA.csv'):
+    file_path for exporting of updated data frame as an excel file (in quotes). Currently defaults to: (df, pause_duration=120, file_path='/Users/file_path/SUMMARIZED_DATA.xlsx):
     pause_duration represents the pause in seconds as e.g. 180 (=3 mins). Currently defaults to 120.
 
     Version logs:
@@ -691,7 +691,7 @@ def batch_sum_v2(df, pause_duration=120, file_path='/Users/kerry-annharris/Docum
 ```python
 
 
-def batch_sum_csv_v2(df, pause_duration=120, file_path='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/SUMMARIZED_DATA.csv'):
+def batch_sum_csv_v2(df, pause_duration=120, file_path='/Users/file_path/SUMMARIZED_DATA.csv'):
     '''
     Function to summarize chunks in BATCHES to manage the computational load associated with using DistilBART for
     text summarization. A pause between batches is included to help with computaional efficiency i.e. manage issue of 
@@ -701,7 +701,7 @@ def batch_sum_csv_v2(df, pause_duration=120, file_path='/Users/kerry-annharris/D
 
     Inputs:
     df with chunks in required column
-    file_path for exporting of updated data frame as an excel file (in quotes). Currently defaults to: file_path='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/SUMMARIZED_DATA.csv':
+    file_path for exporting of updated data frame as an excel file (in quotes). Currently defaults to: file_path='/Users/file_path/SUMMARIZED_DATA.csv':
     pause_duration represents the pause in seconds as e.g. 180 (=3 mins). Currently defaults to 120.
 
     Version logs:
@@ -751,7 +751,7 @@ WORKING WITH EXCEL FILES
 '''
 
 # Define keyword arguments
-file_path = '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/SUMMARIZED_DATA.xlsx'
+file_path = '/Users/file_path/SUMMARIZED_DATA.xlsx'
 pause_duration = 180
 
 # List of functions to apply in sequence with keyword arguments
@@ -765,7 +765,7 @@ process_steps_sum = [
 ```python
 
 # Execute the function pipeline
-df = pd.read_excel('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/UPDATED_DATA.xlsx', 
+df = pd.read_excel('/Users/file_path/SUMMARIZED_DATA.xlsx', 
                    sheet_name='WorkSheet')
 for step, kwargs in process_steps_sum:
     df = step(df, **kwargs)   # **kwargs: This indicates that the function can take 0 or more keyword argumentsn i.e. input is variable
@@ -789,7 +789,7 @@ WORKING WITH CSV FILES
 '''
 
 # Define keyword arguments
-file_path = '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/SUMMARIZED_DATA.csv'
+file_path = '/Users/file_path/SUMMARIZED_DATA.csv'
 pause_duration = 180
 
 # List of functions to apply in sequence with keyword arguments
@@ -802,7 +802,7 @@ process_steps_sum = [
 
 ```python
 # Execute the function pipeline
-df = pd.read_csv('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/UPDATED_DATA.csv')
+df = pd.read_csv('/Users/file_path/SUMMARIZED_DATA.csv')
 for step, kwargs in process_steps_sum:
     df = step(df, **kwargs)   # **kwargs: This indicates that the function can take 0 or more keyword argumentsn i.e. input is variable
 ```
@@ -810,8 +810,399 @@ for step, kwargs in process_steps_sum:
     Processing batch 1 of 1
     File exported
 
+### Automated mapping to related skill
+```python
 
+def get_skills(df, category, df_skills='/Users/file_path/Skills.csv'):
+    """
+    Function created to predict or map a content piece or link to a related skill. This is achieved by comparing the identified
+    topics for the content pieces or links with the defined skills and goals. 
+    Mindset and specialisation content pieces or links will be considered separately. Assessment of project items will be done manaully.
+    
+    Sentence Bert is used for sentence vectorization which produces a numeric representation of the semantics or contextual meaning of each
+    sentence. Cosine similarity is used to assess the similarity of compared sentences by measuring the size of the angle between the 
+    associated vectors.
+    
+    Inputs: 
+    df = Dataframe that represents the processed content or link data from the content tracker (post determination of the main topics, types and sub-types)
+    df_skills = File_path for dataframe or table with the skills, levels and goals (csv file). 
+            Defaults to: '/Users/file_path/Skills.csv'
+    category = general type i.e. mindset ('M') or specialization ('S').
+    
+    """
+    # Verify if required pre-trained SBERT model is loaded; load if necessary
+    try:
+        model_3
+    except NameError:
+        model_3 = SentenceTransformer('all-mpnet-base-v2')
+    
+    # Get topics
+    if category == "M":
+        df_temp = df[df["Sub-Type"] == "Mindset"]
+        df_topics = df_temp[['ID', 'Topics']].copy()
+    elif category == "S":
+        df_temp = df[df["Sub-Type"].isin(["Data", "Customer Success", "Design", "Sales", "Marketing", "Specialization (General)"])]
+        df_topics = df_temp[['ID', 'Topics']].copy()
+    
+    # Remove rows without topics
+    nulls = df_topics[df_topics["Topics"].isna()].index.tolist()
+    df_topics.drop(index=nulls, axis=0, inplace=True)
+    df_topics.reset_index(drop=True, inplace=True)
+    
+    # Split topics into lists
+    df_topics['Topics'] = df_topics['Topics'].str.split('\n')
+
+    # Add a column for sentence embeddings for topics using SBERT
+    df_topics['SB_Embeddings'] = ''
+
+    # Generate Sentence Embeddings for the TOPICS (vectorize the sentences)
+    for index, row in df_topics.iterrows():
+        embeddings = []
+        if row['Topics'] and row['Topics']!=["No transcript"]:  # handle empty cells (back up) and "No transcript" 
+            for sentence in row['Topics']:
+                embedding = model_3.encode(sentence)
+                # print(embedding)
+                embeddings.append(embedding)
+                # print(embeddings)
+        df_topics.at[index, 'SB_Embeddings'] = embeddings
+    # The above is done to allow each topic to be vectorized or embedded separately. A row will have multiple topics in the Topics cell
+    
+    # Get skills
+    df_skills = pd.read_csv(df_skills)
+    df_skills = df_skills[df_skills['Category'] == category]
+    df_skills.reset_index(drop=True, inplace=True)    # Need to reset the index to avoid key errors that will occur when you try index
+                                                    # and map skills to the mapped_skills list
+
+    # Ensure level is the correct data type i.e. int
+    df_skills['Level'] = df_skills['Level'].astype(int)
+
+    # Combine skill and goal into a new column
+    df_skills['skill_goal'] = df_skills['Skill'] + " " + df_skills['Goal']
+    
+    # Add a column for sentence embeddings of skills using SBERT
+    df_skills['SB_Embeddings'] = ''
+
+    # Generate Sentence Embeddings for the SKILLS using SKILL_GOAL (vectorize the sentences)
+    for index, row in df_skills.iterrows():
+        df_skills.at[index, 'SB_Embeddings'] = model_3.encode(row['skill_goal'])
+    
+    # Stack the mulitple rows of skill sentence vectors (embeddings) into a single 2D array, where each row represents a skill)
+    skills_SB_2D = np.vstack(df_skills['SB_Embeddings'].values)      # 2D array for use in cosine sim
+
+    
+    # Create the dataframe that will hold the mapped skills (created outside of the "for loop" to ensure it is not reset with each loop)
+    mapped_df = pd.DataFrame(columns=['ID', 'Topics', 'Related Skill', 'Level'])
+    
+    # Generate cosine similarity matrices by comparing each topic (per row) with the skills
+    for index, row in df_topics.iterrows():
+        # Convert the list of topic embeddings in the row to a Numpy array with each row of the array representing an embedded topic.
+        embeddings_topics_array = np.array(df_topics.loc[index, 'SB_Embeddings'])
+
+        mapped_skill_ID = []
+    
+        # Re-shape to 2D to match the skills and enable cosine similarity assessment
+        topics_len = len(df_topics.loc[index, 'SB_Embeddings'])             # Used to define the number of rows for the 2D array
+        if topics_len > 0:          # Handling the ocurrence of empty topic cells
+            topics_2D = embeddings_topics_array.reshape(topics_len, -1)         # Defining the shape of the 2D array
+            for i in range(topics_2D.shape[0]):     # shape[0] calls the number of rows and hence the number of iterations of the for loop required
+                topic_2D = topics_2D[i].reshape(1, -1)    # Evaluating each topic indivdually but maintaining the 2D array shape needed for comparison in the cosine similarity metric
+                similarity_matrix = cosine_similarity(topic_2D, skills_SB_2D)    # Evaluating the similarity of each topic (individually) against all skills
+                similarity_df = pd.DataFrame(similarity_matrix, columns=[x+1 for x in range(len(df_skills))])   # COnversion of the matrix to a dataframe (1 row)
+                if max(similarity_df.iloc[0]) >= 0.3:    # setting a threshold or min value of 0.3 (tried from none to 0.45)
+                    mapped_skill_ID.append(similarity_df.iloc[0].idxmax())     # Generate a list skill-level IDs related to the topics in the row (0.3 minimum similarity metric)
+            mapped_skill_ID = list(set(mapped_skill_ID))    # remove duplicates
+
+        mapped_skills =[]
+    
+        if len(mapped_skill_ID) > 0:
+            for m in mapped_skill_ID:
+                mapped_skills.append(df_skills.loc[m-1,'Skill'])
+            
+            mapped_df.at[index, 'ID'] = row['ID']
+            mapped_df.at[index, 'Topics'] = row['Topics']
+            mapped_df.at[index, 'Related Skill'] = list(set(mapped_skills))     # remove duplicates
+            mapped_df.at[index, 'Level'] = [f'L{df_skills.loc[(a-1),'Level']} - {mapped_skills[mapped_skill_ID.index(a)]}' for a in mapped_skill_ID]
+        else:      # built-in redundancy since there should be no rows without topics included
+            mapped_df.at[index, 'ID'] = row['ID']
+            mapped_df.at[index, 'Topics'] = row['Topics']
+            mapped_df.at[index, 'Related Skill'] = "Not mapped"
+            mapped_df.at[index, 'Level'] = "Not mapped"
+    
+    mapped_df.to_csv('/Users/file_path/MAPPED_SKILLS.csv', index=False)
+```
+
+
+# Functions and pipelines for Processing Links Sourced from Google Chat Spaces
 
 ```python
+# Import required modules
+import pandas as pd
+import re
+import requests
+from bs4 import BeautifulSoup
+from tqdm import tqdm
+
+```
+
+```python
+
+def chat_processing_v2(df):
+    """
+    
+    Function created to process the shared links copied from the google chat space:
+    (i) separation of title and link into separate columns
+    (ii) removal of irrelevant rows and columns
+
+    Inputs:
+    df - csv file containing the copied content
+
+    Requirements:
+    pandas
+    re
+    
+    """    
+    # Drop irrelevant rows
+    rows_drop = df[df['Shared by'].isna()].index.tolist() #rows with null "Shared by" is used as an indicator of irrelevant row
+    df.drop(index=rows_drop, axis=0, inplace=True)
+
+    # Drop irrelevant columns
+    cols_drop = df.columns[df.columns.str.contains(r'Unnamed').tolist()]
+    df.drop(columns=cols_drop, axis=1, inplace=True)
+
+    # Rename column
+    df.rename(columns={'Date sharedarrow_downward':'Date shared'}, inplace=True)
+
+    # Add needed columns
+    df['Title'] = ''
+    df['Link'] = ''
+
+    # Define patterns for search
+    title_pattern = re.compile(r'[\S\s]+\n')
+    link_pattern = re.compile(r'https?://[\S]+')
+
+    # Extract titles and links
+    for index, row in df.iterrows():
+        if row['Name']:
+            df.at[index, 'Title']= (title_pattern.search(row['Name'])).group()
+            df.at[index, 'Link']= (link_pattern.search(row['Name'])).group()
+
+    # Remove /n
+    df['Title'] = df['Title'].str.replace("\n", "")
+
+    # Define required table layout
+    df = df[['Title', 'Date shared', 'Shared by', 'Link']].copy()    
+    
+    return df
+
+```
+
+```python
+
+def get_description_v3(df, Sub_Type, file_path='/Users/file_path/EXTRACTED_LINKS.csv'):
+    '''
+    Use of web scraping to get website descriptions from the various links to aid in the determination of topics addressed.
+    Cleaning of extracted descriptions by removing (i) extra white spaces (leading, trailing and internal), (ii) \n (newline indicators)
+
+    Inputs:
+    df1 - processed links in a dataframe
+    Sub_Type - Based on the chat space the links are sourced from i.e. 'Mindset', 'Data', 'Customer Success', 'Marketing', 'Design', 'Sales'
+    file_path - Export file path (in quotes), defining file name as EXTRACTED_LINKS.csv. Defaults to '/Users/file_path/EXTRACTED_LINKS.csv'
+
+    Requirements:
+    pandas
+    BeautifulSoup
+    requests
+    tqdm
+    re
+    '''
+
+    # Initialize new columns for web_description, topics, type and subtype (to match content tracker)
+    df['Web_Description'] = ''
+    df['Topics'] = ''
+    df['Type'] = ''
+    df['Sub-Type'] = ''
+
+    for row in tqdm(df.itertuples(index=True), total=len(df[df['Link'].notnull()]), desc="Processing"):
+        # index=True parameter ensures that the row index is tracked. This is necessary for later updating.
+        # tqdm wraps the loop and shows a progress bar that updates with each iteration.
+        # total is based on the number of rows with links (and therefore # of loops) and is used by tqdm to calcuate percentage of completion
+        # desc places a description before the progress bar.
+        
+        # Prevent processing of empty rows
+        if not pd.isna(row.Link):
+            try:
+                # Retrieve the HTML content of the page
+                response = requests.get(row.Link)
+            except Exception as err:        # Managing exceptions that arise as a result of problems with the link e.g. invalid url, max connection attempts
+                 print("Problem with link:", err)    # use of the variable err also for display of the error(s)
+
+            # Define the BeautifulSoup object with the website HTML content and the HTML parser of choice
+            soup = BeautifulSoup(response.content, 'html.parser')
+
+            # Extract the description if available by searching for the <meta> tag with the attribute name="description".
+            # The content attribute within this tag usually contains a summary of the page content.
+            description = soup.find('meta', attrs={'name': 'description'})
+            description_content = description['content'] if description else 'No description available'
+
+            # Update the DataFrame with the extracted description and the given sub-type
+            df.at[row.Index, 'Web_Description'] = description_content
+            df.at[row.Index, 'Sub-Type'] = Sub_Type
+
+    # Cleaning: Removal of \n (newline indicator) from the text
+    df['Web_Description'] = df['Web_Description'].str.replace('\n', ' ')
+
+    # Cleaning: Removal of extra white spaces
+    df['Web_Description'] = df['Web_Description'].str.strip() # Removal of leading and trailing white spaces
+    df['Web_Description'] = [re.sub(r"\s+", " ", row['Web_Description']) for index, row in df.iterrows()]
+    # Replacement of multi-size whitespaces with a single space    
+    
+    export = df.copy()
+    export.to_csv(file_path, index=False)
+    print("File exported!")
+
+```
+
+### Pipeline: For processing Links Sourced from Google Chat Spaces (up to getting descriptions)
+
+```python
+
+# Define keyword arguments
+Sub_Type = "Data"
+
+# List of functions to apply in sequence with keyword arguments
+process_steps_links = [
+    (chat_processing_v2, {}),
+    (get_description_v3, {'Sub_Type':Sub_Type})]
+
+```
+
+```python
+# Execute the function pipeline
+df = pd.read_csv('/Users/file_path/CHAT_LINKS.csv')
+for step, kwargs in process_steps_links:
+    df = step(df, **kwargs)
+
+```
+
+### Automated mapping to related skill
+```python
+
+
+def get_skills_links(df, category, df_skills='/Users/file_path/Skills.csv'):
+    """
+    Function created to predict or map a content piece or link to a related skill. This is achieved by comparing the identified
+    topics for the content pieces or links with the defined skills and goals. 
+    Mindset and specialisation content pieces or links will be considered separately. Assessment of project items will be done manaully.
+    
+    Sentence Bert is used for sentence vectorization which produces a numeric representation of the semantics or contextual meaning of each
+    sentence. Cosine similarity is used to assess the similarity of compared sentences by measuring the size of the angle between the 
+    associated vectors.
+    
+    Inputs: 
+    df = Dataframe that represents the processed content or link data from the content tracker (post determination of the main topics, types and sub-types)
+    df_skills = File_path for dataframe or table with the skills, levels and goals (csv file). 
+            Defaults to: '/Users/file_path/WORKSPACE/Skills.csv'
+    category = general type i.e. mindset ('M') or specialization ('S').
+    
+    """
+    # Verify if required pre-trained SBERT model is loaded; load if necessary
+    try:
+        model_3
+    except NameError:
+        model_3 = SentenceTransformer('all-mpnet-base-v2')
+    
+    # Get topics
+    if category == "M":
+        df_temp = df[df["Sub-Type"] == "Mindset"]
+        df_topics = df_temp[['ID_Links', 'Topics']].copy()
+    elif category == "S":
+        df_temp = df[df["Sub-Type"].isin(["Data", "Customer Success", "Design", "Sales", "Marketing", "Specialization (General)"])]
+        df_topics = df_temp[['ID_Links', 'Topics']].copy()
+    
+    # Remove rows without topics
+    nulls = df_topics[df_topics["Topics"].isna()].index.tolist()
+    df_topics.drop(index=nulls, axis=0, inplace=True)
+    df_topics.reset_index(drop=True, inplace=True)
+    
+    # Split topics into lists
+    df_topics['Topics'] = df_topics['Topics'].str.split('\n')
+
+    # Add a column for sentence embeddings for topics using SBERT
+    df_topics['SB_Embeddings'] = ''
+
+    # Generate Sentence Embeddings for the TOPICS (vectorize the sentences)
+    for index, row in df_topics.iterrows():
+        embeddings = []
+        if row['Topics'] and row['Topics']!=["No transcript"]:  # handle empty cells (back up) and "No transcript" 
+            for sentence in row['Topics']:
+                embedding = model_3.encode(sentence)
+                # print(embedding)
+                embeddings.append(embedding)
+                # print(embeddings)
+        df_topics.at[index, 'SB_Embeddings'] = embeddings
+    # The above is done to allow each topic to be vectorized or embedded separately. A row will have multiple topics in the Topics cell
+    
+    # Get skills
+    df_skills = pd.read_csv(df_skills)
+    df_skills = df_skills[df_skills['Category'] == category]
+    df_skills.reset_index(drop=True, inplace=True)    # Need to reset the index to avoid key errors that will occur when you try index
+                                                    # and map skills to the mapped_skills list
+
+    # Ensure level is the correct data type i.e. int
+    df_skills['Level'] = df_skills['Level'].astype(int)
+
+    # Combine skill and goal into a new column
+    df_skills['skill_goal'] = df_skills['Skill'] + " " + df_skills['Goal']
+    
+    # Add a column for sentence embeddings of skills using SBERT
+    df_skills['SB_Embeddings'] = ''
+
+    # Generate Sentence Embeddings for the SKILLS using SKILL_GOAL (vectorize the sentences)
+    for index, row in df_skills.iterrows():
+        df_skills.at[index, 'SB_Embeddings'] = model_3.encode(row['skill_goal'])
+    
+    # Stack the mulitple rows of skill sentence vectors (embeddings) into a single 2D array, where each row represents a skill)
+    skills_SB_2D = np.vstack(df_skills['SB_Embeddings'].values)      # 2D array for use in cosine sim
+
+    
+    # Create the dataframe that will hold the mapped skills (created outside of the "for loop" to ensure it is not reset with each loop)
+    mapped_df = pd.DataFrame(columns=['ID_Links', 'Topics', 'Related Skill', 'Level'])
+    
+    # Generate cosine similarity matrices by comparing each topic (per row) with the skills
+    for index, row in df_topics.iterrows():
+        # Convert the list of topic embeddings in the row to a Numpy array with each row of the array representing an embedded topic.
+        embeddings_topics_array = np.array(df_topics.loc[index, 'SB_Embeddings'])
+
+        mapped_skill_ID = []
+    
+        # Re-shape to 2D to match the skills and enable cosine similarity assessment
+        topics_len = len(df_topics.loc[index, 'SB_Embeddings'])             # Used to define the number of rows for the 2D array
+        if topics_len > 0:          # Handling the ocurrence of empty topic cells
+            topics_2D = embeddings_topics_array.reshape(topics_len, -1)         # Defining the shape of the 2D array
+            for i in range(topics_2D.shape[0]):     # shape[0] calls the number of rows and hence the number of iterations of the for loop required
+                topic_2D = topics_2D[i].reshape(1, -1)    # Evaluating each topic indivdually but maintaining the 2D array shape needed for comparison in the cosine similarity metric
+                similarity_matrix = cosine_similarity(topic_2D, skills_SB_2D)    # Evaluating the similarity of each topic (individually) against all skills
+                similarity_df = pd.DataFrame(similarity_matrix, columns=[x+1 for x in range(len(df_skills))])   # COnversion of the matrix to a dataframe (1 row)
+                if max(similarity_df.iloc[0]) >= 0.3:    # setting a threshold or min value of 0.3 (tried from none to 0.45)
+                    mapped_skill_ID.append(similarity_df.iloc[0].idxmax())     # Generate a list skill-level IDs related to the topics in the row (0.3 minimum similarity metric)
+            mapped_skill_ID = list(set(mapped_skill_ID))    # remove duplicates
+
+        mapped_skills =[]
+    
+        if len(mapped_skill_ID) > 0:
+            for m in mapped_skill_ID:
+                mapped_skills.append(df_skills.loc[m-1,'Skill'])
+            
+            mapped_df.at[index, 'ID_Links'] = row['ID_Links']
+            mapped_df.at[index, 'Topics'] = row['Topics']
+            mapped_df.at[index, 'Related Skill'] = list(set(mapped_skills))     # remove duplicates
+            mapped_df.at[index, 'Level'] = [f'L{df_skills.loc[(a-1),'Level']} - {mapped_skills[mapped_skill_ID.index(a)]}' for a in mapped_skill_ID]
+        else:      # built-in redundancy since there should be no rows without topics included
+            mapped_df.at[index, 'ID_Links'] = row['ID_Links']
+            mapped_df.at[index, 'Topics'] = row['Topics']
+            mapped_df.at[index, 'Related Skill'] = "Not mapped"
+            mapped_df.at[index, 'Level'] = "Not mapped"
+    
+    mapped_df.to_csv('/Users/file_path/MAPPED_SKILLS.csv', index=False)
 
 ```
