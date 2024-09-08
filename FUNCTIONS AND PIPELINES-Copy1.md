@@ -247,13 +247,13 @@ def clean_part2_v4(df, ID_start, file_path='/Users/file_path/EXTRACTED_DATA.xlsx
     df['Level'] = ''
     df['Comments'] = ''
     df['ID'] = ''
-    df['Auto_Skill'] = ''
+    df['Auto Related Skill'] = ''
     df['Transcript'] = ''
     df['transcript_url_pdf'] = ''
     df['Chunks'] = ''
     df['Summary'] = ''
     # order the columns
-    export = df[['ID', 'Source_ID', 'Title', 'Date', 'Duration (hh:mm)', 'Organizer', 'Topics', 'Type', 'Sub-Type', 'Auto_Skill', 'Related Skill', 
+    export = df[['ID', 'Source_ID', 'Title', 'Date', 'Duration (hh:mm)', 'Organizer', 'Topics', 'Type', 'Sub-Type', 'Auto Related Skill', 'Related Skill', 
                  'Level', 'Comments', 'video_url', 'chat_url', 'transcript_url', 'transcript_url_pdf', 'Transcript', 'Chunks', 'Summary']].copy()
     # reset the index
     export.reset_index(drop=True, inplace=True)
@@ -301,13 +301,13 @@ def clean_part2_v4_csv(df, ID_start, file_path='/Users/file_path/EXTRACTED_DATA.
     df['Level'] = ''
     df['Comments'] = ''
     df['ID'] = ''
-    df['Auto_Skill'] = ''
+    df['Auto Related Skill'] = ''
     df['Transcript'] = ''
     df['transcript_url_pdf'] = ''
     df['Chunks'] = ''
     df['Summary'] = ''
     # order the columns
-    export = df[['ID', 'Source_ID', 'Title', 'Date', 'Duration (hh:mm)', 'Organizer', 'Topics', 'Type', 'Sub-Type', 'Auto_Skill', 'Related Skill', 
+    export = df[['ID', 'Source_ID', 'Title', 'Date', 'Duration (hh:mm)', 'Organizer', 'Topics', 'Type', 'Sub-Type', 'Auto Related Skill', 'Related Skill', 
                  'Level', 'Comments', 'video_url', 'chat_url', 'transcript_url', 'transcript_url_pdf', 'Transcript', 'Chunks', 'Summary']].copy()
     # reset the index
     export.reset_index(drop=True, inplace=True)
