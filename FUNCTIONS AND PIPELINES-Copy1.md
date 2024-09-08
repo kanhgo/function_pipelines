@@ -579,8 +579,10 @@ def split_into_chunks_v2(text, max_length=1024):
 '''
 Creation of a function to use split_into_chunks function with my dataset and incorporate into the pipeline or
 workflow.
+Updated to skip cells with no transcript i.e. with "Error:" in the transscript column.
 
 Created: 26/July/2024
+Updated: 08/Sept/2024
 
 Inputs:
 df with extracted transcripts
@@ -591,12 +593,18 @@ transformers===4.38.2
 
 '''
 
-def get_chunks(df):
+def get_chunks_v2(df):
     if 'Chunks' not in df.columns:
         df['Chunks'] = '' # Add an empty column for the chunks
         
-    df['Chunks'] = [split_into_chunks(row['Transcript']) for index, row in df.iterrows()]
+    df['Transcript'] = df['Transcript'].astype(str) # ensure that contents of transcript column are string
 
+    for index, row in df.iterrows():
+        if r'Error:[\s\S]+' not in row['Transcript']:
+            row['Chunks'] = split_into_chunks_v2(row['Transcript'])
+        else:
+            pass
+ 
     return df
 ```
 
