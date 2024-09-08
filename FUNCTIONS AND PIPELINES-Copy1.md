@@ -601,7 +601,8 @@ def get_chunks_v2(df):
 
     for index, row in df.iterrows():
         if r'Error:[\s\S]+' not in row['Transcript']:
-            row['Chunks'] = split_into_chunks_v2(row['Transcript'])
+            if row['Transcript']:
+                row['Chunks'] = split_into_chunks_v2(row['Transcript'])
         else:
             pass
  
