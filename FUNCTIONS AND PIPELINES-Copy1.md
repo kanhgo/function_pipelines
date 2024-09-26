@@ -259,7 +259,7 @@ Created: 25/August/2024
 Inputs:
 - table_name: table or dataframe produced after manual review and deletion of "small" events.
 - file_path: export file path including intended name of excel file (in quotes).
-    Currently defaults to: '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/EXTRACTED_DATA.xlsx'
+    Currently defaults to: '/filepath/OUTPUT/EXTRACTED_DATA.xlsx'
 - ID_start: starting ID for current batch of calender-sourced recordings
 
 Version logs:
@@ -267,7 +267,7 @@ pandas = 2.2.1
 
 '''
 
-def clean_part2_v4(df, ID_start, file_path='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/EXTRACTED_DATA.xlsx'):
+def clean_part2_v4(df, ID_start, file_path='/filepath/OUTPUT/EXTRACTED_DATA.xlsx'):
     # drop unnecessary columns
     df.drop(columns=['Extra', 'Count', 'source_url', 'sourceC_url', 'sourceT_url'], axis=1, inplace=True)
     # add extra needed columns 
@@ -314,14 +314,14 @@ Created: 25/August/2024
 Inputs:
 - table_name: table or dataframe produced after manual review and deletion of "small" events.
 - file_path: export file path including intended name of csv file (in quotes).
-    Currently defaults to: '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/EXTRACTED_DATA.csv'
+    Currently defaults to: '/filepath/OUTPUT/EXTRACTED_DATA.csv'
 
 Version logs:
 pandas = 2.2.1
 
 '''
 
-def clean_part2_v4_csv(df, ID_start, file_path='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/EXTRACTED_DATA.csv'):
+def clean_part2_v4_csv(df, ID_start, file_path='/filepath/OUTPUT/EXTRACTED_DATA.csv'):
     # drop unnecessary columns
     df.drop(columns=['Extra', 'Count', 'source_url', 'sourceC_url', 'sourceT_url'], axis=1, inplace=True)
     # add extra needed columns 
@@ -378,7 +378,7 @@ It is then cleaned before being exported (loading on Google drive):
 # '''
 
 # # read the .ics file
-# with open('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
+# with open('/filepath/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
 #     calendar1 = Calendar(file.read())
 
 # year_start=2024
@@ -407,7 +407,7 @@ EXPORTING CSV FILES
 '''
 
 # read the .ics file
-with open('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
+with open('/filepath/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
     calendar1 = Calendar(file.read())
 
 year_start=2024
@@ -447,7 +447,7 @@ for step, kwargs in process_steps:
 # '''
 
 # # read the .ics file
-# with open('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
+# with open('/filepath/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
 #     calendar1 = Calendar(file.read())
 
 # year_start=2024
@@ -457,7 +457,7 @@ for step, kwargs in process_steps:
 # month_end=7
 # day_end=12
 
-# file_path = '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/EXTRACTED_DATA.xlsx'
+# file_path = '/filepath/OUTPUT/EXTRACTED_DATA.xlsx'
 
 # ID_start = 0
 
@@ -478,7 +478,7 @@ Updated approach.
 '''
 
 # read the .ics file
-with open('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
+with open('/filepath/WORKSPACE/CALENDAR_DATA.ics', 'r') as file:
     calendar1 = Calendar(file.read())
 
 year_start=2024
@@ -684,7 +684,7 @@ def summarize_text_v2(text):
 
 ```python
 
-def batch_sum_v2(df, pause_duration=120, file_path='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/SUMMARIZED_DATA.xlsx'):
+def batch_sum_v2(df, pause_duration=120, file_path='/filepath/OUTPUT/SUMMARIZED_DATA.xlsx'):
     '''
     Function to summarize chunks in BATCHES to manage the computational load associated with using DistilBART for
     text summarization. A pause between batches is included to help with computaional efficiency i.e. manage issue of 
@@ -694,7 +694,7 @@ def batch_sum_v2(df, pause_duration=120, file_path='/Users/kerry-annharris/Docum
 
     Inputs:
     df with chunks in required column
-    file_path for exporting of updated data frame as an excel file (in quotes). Currently defaults to: (df, pause_duration=120, file_path='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/SUMMARIZED_DATA.csv'):
+    file_path for exporting of updated data frame as an excel file (in quotes). Currently defaults to: (df, pause_duration=120, file_path='/filepath/OUTPUT/SUMMARIZED_DATA.csv'):
     pause_duration represents the pause in seconds as e.g. 180 (=3 mins). Currently defaults to 120.
 
     Version logs:
@@ -801,7 +801,7 @@ WORKING WITH EXCEL FILES
 '''
 
 # Define keyword arguments
-file_path = '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/SUMMARIZED_DATA.xlsx'
+file_path = '/filepath/OUTPUT/SUMMARIZED_DATA.xlsx'
 pause_duration = 180
 
 # List of functions to apply in sequence with keyword arguments
@@ -815,7 +815,7 @@ process_steps_sum = [
 ```python
 
 # Execute the function pipeline
-df = pd.read_excel('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/UPDATED_DATA.xlsx', 
+df = pd.read_excel('/filepath/OUTPUT/UPDATED_DATA.xlsx', 
                    sheet_name='WorkSheet')
 for step, kwargs in process_steps_sum:
     df = step(df, **kwargs)   # **kwargs: This indicates that the function can take 0 or more keyword argumentsn i.e. input is variable
@@ -839,7 +839,7 @@ WORKING WITH CSV FILES
 '''
 
 # Define keyword arguments
-file_path = '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/SUMMARIZED_DATA.csv'
+file_path = '/filepath/OUTPUT/SUMMARIZED_DATA.csv'
 pause_duration = 180
 
 # List of functions to apply in sequence with keyword arguments
@@ -852,7 +852,7 @@ process_steps_sum = [
 
 ```python
 # Execute the function pipeline
-df = pd.read_csv('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/UPDATED_DATA.csv')
+df = pd.read_csv('/filepath/OUTPUT/UPDATED_DATA.csv')
 for step, kwargs in process_steps_sum:
     df = step(df, **kwargs)   # **kwargs: This indicates that the function can take 0 or more keyword argumentsn i.e. input is variable
 ```
@@ -897,7 +897,7 @@ def get_subtype_v2(df):
     
     Inputs: 
     df = Dataframe or table that represents the processed content or link data from the content tracker Topics worksheet containing  the topics (post determination of the main topics)
-            Defaults to:pd.read_csv('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/Topics.csv')
+            Defaults to:pd.read_csv('/filepath/WORKSPACE/Topics.csv')
             
     '''
     
@@ -989,7 +989,7 @@ def get_subtype_v2(df):
     # Drop unnecessary columns ('Topics_plus' and 'S_Embeddings')
     df.drop(columns=['Topics_plus','S_Embeddings'], axis=1, inplace=True)
 
-    #df.to_csv('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/CHECK.csv')
+    #df.to_csv('/filepath/WORKSPACE/CHECK.csv')
     
     return df
 ```
@@ -997,7 +997,7 @@ def get_subtype_v2(df):
 
 ```python
 
-def get_skills_v3(df, category, df_skills='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/Skills.csv'):
+def get_skills_v3(df, category, df_skills='/filepath/WORKSPACE/Skills.csv'):
     """
     Function created to predict or map a content piece to a related skill. This is achieved by comparing the identified
     topics for the content pieces with the defined skills and goals. 
@@ -1010,7 +1010,7 @@ def get_skills_v3(df, category, df_skills='/Users/kerry-annharris/Documents/Star
     Inputs: 
     df = Dataframe that represents the processed content data from the content tracker (after determination of the main topics, types and sub-types)
     df_skills = File_path for dataframe or table with the skills, levels and goals (csv file). 
-            Defaults to: '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/Skills.csv'
+            Defaults to: '/filepath/WORKSPACE/Skills.csv'
     category = general type i.e. mindset ('M') or specialization ('S').
     
     """
@@ -1120,13 +1120,13 @@ def get_skills_v3(df, category, df_skills='/Users/kerry-annharris/Documents/Star
             mapped_df.at[index, 'Auto Related Skill'] = "Not mapped"
             mapped_df.at[index, 'Auto Level'] = "Not mapped"
     
-    mapped_df.to_csv('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/MAPPED.csv', index=False)
+    mapped_df.to_csv('/filepath/OUTPUT/MAPPED.csv', index=False)
 ```
 
 
 ```python
 
-def get_skills_links_v2(df, category, df_skills='/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/Skills.csv'):
+def get_skills_links_v2(df, category, df_skills='/filepath/WORKSPACE/Skills.csv'):
     """
     Function created to predict or map a content piece or link to a related skill. This is achieved by comparing the identified
     topics for the content pieces or links with the defined skills and goals. 
@@ -1139,7 +1139,7 @@ def get_skills_links_v2(df, category, df_skills='/Users/kerry-annharris/Document
     Inputs: 
     df = Dataframe that represents the processed content or link data from the content tracker (post determination of the main topics, types and sub-types)
     df_skills = File_path for dataframe or table with the skills, levels and goals (csv file). 
-            Defaults to: '/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/Skills.csv'
+            Defaults to: '/filepath/WORKSPACE/Skills.csv'
     category = general type i.e. mindset ('M') or specialization ('S').
     
     """
@@ -1249,7 +1249,7 @@ def get_skills_links_v2(df, category, df_skills='/Users/kerry-annharris/Document
             mapped_df.at[index, 'Auto Related Skill'] = "Not mapped"
             mapped_df.at[index, 'Auto Level'] = "Not mapped"
     
-    mapped_df.to_csv('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/EXTRACTS/OUTPUT/MAPPED.csv', index=False)
+    mapped_df.to_csv('/filepath/OUTPUT/MAPPED.csv', index=False)
 ```
 
 ### Pipeline - 3: Mapping
@@ -1264,7 +1264,7 @@ process_steps = [
 
 ```python
 
-df=pd.read_csv('/Users/kerry-annharris/Documents/Startwise/2024/Projects/Content Management/WORKSPACE/Topics.csv')  # filepath for topics csv
+df=pd.read_csv('/filepath/WORKSPACE/Topics.csv')  # filepath for topics csv
 for step, kwargs in process_steps:
     df = step(df, **kwargs)
 ```
