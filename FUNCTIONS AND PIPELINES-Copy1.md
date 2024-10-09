@@ -625,18 +625,21 @@ transformers===4.38.2
 '''
 
 def get_chunks_v2(df):
-    if 'Chunks' not in df.columns:
-        df['Chunks'] = '' # Add an empty column for the chunks
-        
+    
     df['Transcript'] = df['Transcript'].astype(str) # ensure that contents of transcript column are string
 
     for index, row in df.iterrows():
-        if r'Error:[\s\S]+' not in row['Transcript']:
-            if row['Transcript']:
-                row['Chunks'] = split_into_chunks_v2(row['Transcript'])
-        else:
-            pass
- 
+        if row['Transcript']:
+            df.at[index,'Chunks'] = split_into_chunks_v2(row['Transcript'])
+
+    pattern = re.compile(r'Error:')
+    for index, row in df.iterrows():
+        match = pattern.search(row['Chunks'][0])
+        if match:
+            df.at[index,'Chunks'] = ' '
+    
+    df['Chunks'] = df['Chunks'].fillna(' ')  # Added to handle the empty cells associated with the "Error" rows not processed
+    
     return df
 ```
 
